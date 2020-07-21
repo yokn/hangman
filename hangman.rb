@@ -16,3 +16,7 @@
 #
 #
 #
+
+require_relative 'game'
+
+Game.new.setup_game
