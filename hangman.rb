@@ -17,6 +17,8 @@
 #
 #
 
+# TODO: Add reveal char
+
 require_relative 'game'
 
 Game.new.setup_game
