@@ -15,6 +15,7 @@ class Game
   def setup_game
     # resume?
     generate_secret_word
+    @board.display_board(@secret_word, @lives)
     play_game
   end
 
@@ -23,7 +24,8 @@ class Game
     rand(61_404).times { @words_file.readline }
     @secret_word = @words_file.readline.gsub(/\s/, '') until @secret_word.length > 4 && @secret_word.length < 13
     p @secret_word
-    @secret_word = @secret_word.split
+    @secret_word = @secret_word.upcase.split('')
+    # p @secret_word
   end
 
   def check_guess(guess)
