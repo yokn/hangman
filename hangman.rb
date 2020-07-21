@@ -17,7 +17,7 @@
 #
 #
 
-# TODO: Add reveal char
+# TODO: Save/load game
 
 require_relative 'game'
 

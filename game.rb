@@ -23,9 +23,7 @@ class Game
     @words_file = File.open('5desk.txt', 'r')
     rand(61_404).times { @words_file.readline }
     @secret_word = @words_file.readline.gsub(/\s/, '') until @secret_word.length > 4 && @secret_word.length < 13
-    p @secret_word
     @secret_word = @secret_word.upcase.split('')
-    # p @secret_word
   end
 
   def check_guess(guess)
@@ -34,18 +32,19 @@ class Game
       if value == guess
         @board.reveal_char(value, index)
         @correct_guess = true
-      else
-        @wrong_guesses.push(guess) unless @wrong_guesses.include?(guess)
       end
     end
+    @wrong_guesses.push(guess) unless @correct_guess || @wrong_guesses.include?(guess)
     @lives -= 1 unless @correct_guess
   end
 
   def play_game
-    while @lives.positive? && @board.not_full?
-      check_guess(@player.get_guess)
+    while @lives.positive? && !@board.full?
       @board.display_board(@lives, @wrong_guesses)
+      check_guess(@player.get_guess)
     end
-    puts 'Game Over!'
+    puts "The secret word was: #{@secret_word}"
+    puts @board.full? ? 'You won!' : 'You lost!'
+    # puts 'Game Over!'
   end
 end
