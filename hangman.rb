@@ -17,7 +17,8 @@
 #
 #
 
-# TODO: Save/load game
+# TODO: Input validation
+# TODO: Make the board look nicer
 
 require_relative 'game'
 
