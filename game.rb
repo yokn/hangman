@@ -64,7 +64,7 @@ class Game
 
   def load_game
     loaded_state = JSON.parse(File.read('savedgame.json'))
-    p loaded_state
+    # p loaded_state
     # Took me like 20 minutes to figure out why I couldn't read any of the values from the hash...
     # https://stackoverflow.com/a/11381424
     @secret_word = loaded_state['secret_word']
@@ -74,7 +74,7 @@ class Game
   end
 
   def resume?
-    puts 'Do you want to load a previous game? (true/false)'
+    puts 'Do you want to load the previous game? (true/false)'
     load_game if gets.chomp == 'true'
   end
 end
